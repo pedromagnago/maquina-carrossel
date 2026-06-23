@@ -10,18 +10,17 @@ Marketplace de Claude Code com o plugin **maquina-carrossel**: transforma um ins
 
 ## Instalação (qualquer pessoa)
 
-```bash
-# 1. adicionar este marketplace (use a URL do repositório no GitHub)
-/plugin marketplace add https://github.com/<usuario>/<repositorio>
+No Claude Code, cole na ordem:
 
-# 2. instalar o plugin
-/plugin install maquina-carrossel
-
-# 3. preparar as dependências (uma vez — instala Playwright + baixa o Chromium)
+```
+/plugin marketplace add pedromagnago/maquina-carrossel
+/plugin install maquina-carrossel@maquina-carrossel-marketplace
 /maquina-carrossel:setup
 ```
 
-> Funciona com repositório **público** (qualquer um instala) ou **privado** (quem tem acesso git ao repo instala com as próprias credenciais).
+1. adiciona o marketplace (repo público — sem login)
+2. instala o plugin
+3. prepara as dependências, uma vez (instala o Playwright + baixa o Chromium ~150 MB)
 
 > ⚠️ **Tem o plugin antigo instalado?** Se você usou uma versão anterior (`maquina-conteudo`, com MCP), **desinstale antes** — os dois brigam: `/plugin uninstall maquina-conteudo` (e remova o marketplace dele). Confirme com `/plugin list` que só `maquina-carrossel` está ativo.
 
