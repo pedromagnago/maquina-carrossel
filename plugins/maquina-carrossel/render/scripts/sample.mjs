@@ -23,8 +23,15 @@ const out = process.argv[4]
   : join(dirname(brandPath), "sample-capa.png");
 
 const handle = brand.handle || "@marca";
+// skin da marca (mesma camada híbrida do render)
+let skinCss = "";
+{
+  const brandDir = dirname(brandPath);
+  const skinRef = brand.skin ? (isAbsolute(brand.skin) ? brand.skin : join(brandDir, brand.skin)) : join(brandDir, "skin.css");
+  if (existsSync(skinRef)) { try { skinCss = readFileSync(skinRef, "utf8"); } catch {} }
+}
 const html = `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
-<style>${fontFaceCss()}\n${CSS}\n${rootCss(brand)}\nbody{background:#2a2a2a;padding:24px;display:flex;justify-content:center;}</style></head>
+<style>${fontFaceCss()}\n${CSS}\n${rootCss(brand)}\n${skinCss}\nbody{background:#2a2a2a;padding:24px;display:flex;justify-content:center;}</style></head>
 <body><div class="slide capa dark" id="slide-1">
   <div class="brand-bar"><span>${handle}</span><span class="counter">1/6</span></div>
   <div class="swipe">›</div>

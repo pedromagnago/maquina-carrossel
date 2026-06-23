@@ -98,6 +98,10 @@
       }
     },
 
+    "skin": {
+      "type": "string",
+      "description": "ref do CSS de assinatura visual da marca (default: skin.css na pasta da marca). Camada híbrida injetada após o design-system base: texturas, gradientes, acentos, tratamentos de capa. Pode usar as CSS vars (--P, --ALERT, --OK, --LB, --DB) e o hook .skin-layer."
+    },
     "render_tokens": {
       "type": "object",
       "description": "derivados explícitos (opcional). Se ausentes, lib/tokens.mjs deriva de visual_tokens.cores.primaria.",

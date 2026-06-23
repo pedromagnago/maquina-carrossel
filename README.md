@@ -23,6 +23,8 @@ Marketplace de Claude Code com o plugin **maquina-carrossel**: transforma um ins
 
 > Funciona com repositório **público** (qualquer um instala) ou **privado** (quem tem acesso git ao repo instala com as próprias credenciais).
 
+> ⚠️ **Tem o plugin antigo instalado?** Se você usou uma versão anterior (`maquina-conteudo`, com MCP), **desinstale antes** — os dois brigam: `/plugin uninstall maquina-conteudo` (e remova o marketplace dele). Confirme com `/plugin list` que só `maquina-carrossel` está ativo.
+
 ## Uso
 
 ```bash

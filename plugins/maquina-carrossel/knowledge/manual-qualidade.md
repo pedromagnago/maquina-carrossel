@@ -3,6 +3,8 @@
 > Material de referência (knowledge) lido pelos agentes do plugin. Define os parâmetros, penalidades e testes de QA que todo carrossel precisa passar antes da entrega, em qualquer marca.
 >
 > **NOTA SOBRE ESTRUTURA:** A estrutura de blocos/slides varia por framework escolhido (6–9 slides); os 7 parâmetros de QA abaixo são UNIVERSAIS e valem para qualquer framework. A seção "Estrutura obrigatória — 18 blocos / 9 slides" é ESPECÍFICA do template Principal e não deve ser aplicada a frameworks com outra contagem de slides.
+>
+> **DENSIDADE É UNIVERSAL (todos os frameworks):** mesmo com menos slides, cada bloco carrega substância — fato específico, número com fonte+ano, ou contraste real. No máximo 2 blocos por slide (bloco 1 contextualiza, bloco 2 aprofunda ou contradiz). Nada de frase de enchimento, generalidade ("empresas estão adotando…") ou bloco que funcionaria com qualquer outro sujeito. **Sem 2ª pessoa ("você") é regra dura** (só se o brand pack permitir em `qa_overrides`). Densidade rasa reprova tanto quanto AI-slop.
 
 ---
 

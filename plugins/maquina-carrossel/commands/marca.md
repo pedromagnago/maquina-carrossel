@@ -21,10 +21,10 @@ Antes de qualquer coisa, garanta que `~/.maquina-carrossel/marcas/` existe (`mkd
 Objetivo: capturar o mínimo para gerar conteúdo na voz da marca, com **pouco atrito**. Tom direto, sem bastidor.
 
 ### 1. Coleta passiva (atrito mínimo)
-Peça uma coisa só: *"Cola o link do site, ou arrasta o logo/brand book (imagem ou PDF). Se não tiver nada, tudo bem — a gente monta do zero."*
+Peça uma coisa só: *"Cola o link do site, ou arrasta o logo/brand book/brand guide (imagem ou PDF). Se não tiver nada, tudo bem — a gente monta do zero."*
 - Site → use **WebFetch** para ler texto/meta e extrair cores (hex no CSS/inline) e tom.
-- Logo/print/PDF → use **Read** (visão) para descrever cores dominantes, estilo e mood.
-- Extraia candidatos a: cor primária, paleta, tom de voz, posicionamento, público.
+- Logo/print/PDF/**brand guide** → use **Read** (visão) e leia com atenção: paleta completa (todos os hex), **tipografia** (fontes de título e corpo), estilo/mood, texturas/elementos gráficos.
+- Extraia candidatos a: cor primária + paleta inteira, **fontes (headline/body)**, tom de voz, posicionamento, público, e qualquer **assinatura visual** (textura, grid, gradiente, elemento gráfico recorrente).
 
 ### 2. DDD-lite (5–7 perguntas, uma por vez)
 Faça poucas perguntas, **pré-preenchidas** pelo que a coleta revelou. Sempre 3–4 opções + "Outro (escreva)". Só pergunte o que faltar:
@@ -41,19 +41,25 @@ Não exponha o processo. Conduza como uma conversa curta.
 ### 3. Montar o brand pack
 Monte o `brand.json` seguindo `${CLAUDE_PLUGIN_ROOT}/schemas/brand-pack.schema.json`. Regras:
 - `slug` = kebab-case do nome. `handle` = @ do Instagram (pergunte se não veio).
-- `visual_tokens.cores.primaria` = a cor confirmada (#hex). Inclua `acento`/`sucesso` se houver; senão deixe o render usar os defaults.
-- `voice_tone`, `rules.aprovados`/`proibidos` (do que a marca usa/evita), `personas` (do ICP), `temas_editoriais`.
-- `icp_ddd` com `promessa_central`, `fala_assim`, `evita` (estes dois também alimentam `rules`).
-- `fonte_canonica` = "onboarding".
-- `quality`: calcule `prontidao` (0–100) pelos fundamentais presentes (paleta, logo, tom, posicionamento, público/ICP). `status` = `pronto` (≥70 e todos fundamentais), `quase_la` (50–69) ou `incompleto` (<50). Liste `warnings` (ex.: "paleta dispersa — confirme a cor oficial", "sem brand book — tokens default").
-- Sem brand book/cor → use a primária default `#2D6BFF` e marque `status: quase_la` + warning.
+- `visual_tokens.cores`: `primaria` (#hex confirmado) + `acento`/`sucesso`/`texto`/`bg` quando houver.
+- **`visual_tokens.fontes`**: `headline` e `body`. Pool embutido pronto: **Space Grotesk**, **DM Sans**, **JetBrains Mono** (escolha o par que combina com o mood — ex.: mono pra tech/hacker). Se a marca usa outra fonte, registre o nome (o render cai no fallback do sistema até a fonte ser embutida).
+- **`render_tokens`**: preencha os tokens exatos da marca (`P`, `PL`, `PD`, `LB`, `DB`, `LR`, `ALERT`, `OK`, `F_HEAD`, `F_BODY`) a partir da paleta real do brand guide. Isso garante que o render use as cores oficiais, não os derivados automáticos.
+- `voice_tone`, `rules.aprovados`/`proibidos`, `personas` (ICP), `temas_editoriais`, `icp_ddd` (`promessa_central`, `fala_assim`, `evita` — estes dois alimentam `rules`).
+- `fonte_canonica`, e `quality` (`prontidao` 0–100; `status` pronto/quase_la/incompleto; `warnings`).
+- **Nunca deixe a marca vazia:** sem brand guide/cor, use uma primária neutra (`#2D6BFF`) e `status: quase_la` + warning — mas com voz e tokens preenchidos o suficiente para o `/carrossel` não cair no default genérico.
 
-### 4. Preview + salvar
-1. Grave o `brand.json` em `~/.maquina-carrossel/marcas/<slug>/brand.json`.
-2. Renderize a **capa de amostra** com os tokens da marca:
-   `node "${CLAUDE_PLUGIN_ROOT}/render/scripts/sample.mjs" "<caminho-absoluto-do-brand.json>" "PRÉVIA DA <em>SUA MARCA</em>"`
-   Isso grava `marcas/<slug>/sample-capa.png`.
-3. Mostre a capa gerada ao usuário (via Read da imagem) e pergunte se a cor/identidade está certa. Se não, ajuste a primária no `brand.json` e re-renderize.
-4. Ao aprovar: defina como marca ativa (`config.json`), confirme em 1–2 linhas e diga que já dá pra rodar `/maquina-carrossel:carrossel`.
+### 4. Assinatura visual — gerar `skin.css`
+Desenhe a **assinatura visual da marca** num arquivo CSS e salve em `~/.maquina-carrossel/marcas/<slug>/skin.css` (referencie em `brand.skin: "skin.css"`). A skin é injetada **sobre** o design-system base e pode usar as CSS vars (`--P`, `--ALERT`, `--OK`, `--LB`, `--DB`) e o hook `.skin-layer` (camada atrás do conteúdo). Capture o que torna a marca reconhecível, por exemplo:
+- textura/grid/padrão de fundo no `.skin-layer` (dos slides escuros e da capa);
+- tratamento da capa (`.capa-headline`, `.capa .badge`), cor das `.tag`, destaque do `.body em`;
+- glow/gradiente de acento, cor de `.cta-button`, borda dos cards (`.insight-box`, `.data-pill`).
+Mantenha legível (contraste do texto sobre o fundo) e dentro da paleta. Sem brand guide forte, gere uma skin sóbria coerente com a cor primária (gradiente sutil + acento) — melhor que nada.
 
-Se `setup.sh` não foi rodado (faltam deps/Chromium), o render da amostra vai falhar — nesse caso, oriente: `bash "${CLAUDE_PLUGIN_ROOT}/scripts/setup.sh"` e tente de novo. O `brand.json` já fica salvo de qualquer forma.
+### 5. Preview + salvar
+1. Grave `brand.json` (+ `skin.css`) em `~/.maquina-carrossel/marcas/<slug>/`.
+2. Renderize a **capa de amostra** (já aplica a skin):
+   `node "${CLAUDE_PLUGIN_ROOT}/render/scripts/sample.mjs" "<caminho-absoluto-do-brand.json>" "PRÉVIA DA <em>SUA MARCA</em>"` → grava `sample-capa.png`.
+3. Mostre a capa (Read da imagem) e pergunte se a identidade está certa. Se não, ajuste paleta/skin e re-renderize.
+4. Ao aprovar: defina como marca ativa (`config.json`) e confirme que já dá pra rodar `/maquina-carrossel:carrossel`.
+
+Se faltar setup (deps/Chromium), oriente `bash "${CLAUDE_PLUGIN_ROOT}/scripts/setup.sh"`. O `brand.json`/`skin.css` já ficam salvos.

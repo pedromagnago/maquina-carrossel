@@ -15,6 +15,7 @@ const OUT = join(OUT_DIR, "fonts.generated.css");
 const FAMILIES = [
   { pkg: "space-grotesk", family: "Space Grotesk", weights: [300, 400, 500, 700] },
   { pkg: "dm-sans", family: "DM Sans", weights: [400, 500, 700] },
+  { pkg: "jetbrains-mono", family: "JetBrains Mono", weights: [400, 700, 800] },
 ];
 
 function findWoff2(pkg, weight) {

@@ -29,10 +29,16 @@ catch (e) { fail("slides.json inválido: " + e.message); }
 
 // ---------- brand ----------
 let brand = {};
+let skinCss = ""; // assinatura visual da marca (camada híbrida sobre o design-system)
 if (data.brand_pack_ref) {
   const bp = isAbsolute(data.brand_pack_ref) ? data.brand_pack_ref : join(pecaDir, data.brand_pack_ref);
-  if (existsSync(bp)) { try { brand = JSON.parse(readFileSync(bp, "utf8")); } catch (e) { console.warn("aviso: brand pack inválido: " + e.message); } }
-  else console.warn("aviso: brand_pack_ref não encontrado (" + bp + "); usando tokens default.");
+  if (existsSync(bp)) {
+    try { brand = JSON.parse(readFileSync(bp, "utf8")); } catch (e) { console.warn("aviso: brand pack inválido: " + e.message); }
+    // skin: campo `skin` (ref) ou skin.css na pasta da marca
+    const brandDir = dirname(bp);
+    const skinRef = brand.skin ? (isAbsolute(brand.skin) ? brand.skin : join(brandDir, brand.skin)) : join(brandDir, "skin.css");
+    if (existsSync(skinRef)) { try { skinCss = readFileSync(skinRef, "utf8"); } catch {} }
+  } else console.warn("aviso: brand_pack_ref não encontrado (" + bp + "); usando tokens default.");
 }
 
 // ---------- validação estrutural (espelha o superRefine do schema.ts v01) ----------
@@ -107,6 +113,7 @@ function slideHtml(s, i) {
     const bg = s.imagem && s.imagem.tipo === "local" ? imgData(s.imagem.ref) : null;
     const badge = meta.tipo_badge ? `<div class="badge">${meta.tipo_badge}</div>` : "";
     return `<div class="slide capa ${s.bg}" id="slide-${i + 1}">
+      <div class="skin-layer"></div>
       ${bg ? `<div class="capa-bg" style="background-image:url('${bg}')"></div><div class="capa-grad"></div>` : ""}
       ${bar}${swipe}
       <div class="content">${badge}<div class="capa-headline">${s.headline || ""}</div></div>
@@ -125,6 +132,7 @@ function slideHtml(s, i) {
     cta = `<div class="cta-button"><span>${label}</span></div>${s.cta.beneficio ? `<div class="body">${s.cta.beneficio}</div>` : ""}`;
   }
   return `<div class="slide ${s.bg}" id="slide-${i + 1}">
+    <div class="skin-layer"></div>
     ${bar}${swipe}
     <div class="content">${tag}${comps}${head}${blocos}${cta}${source}</div>
     ${progress}
@@ -133,7 +141,7 @@ function slideHtml(s, i) {
 
 function docHtml(bodyInner, extraCss = "") {
   return `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
-  <style>${fontFaceCss()}\n${CSS}\n${rootCss(brand)}\n${extraCss}</style></head>
+  <style>${fontFaceCss()}\n${CSS}\n${rootCss(brand)}\n/* skin da marca */\n${skinCss}\n${extraCss}</style></head>
   <body>${bodyInner}</body></html>`;
 }
 

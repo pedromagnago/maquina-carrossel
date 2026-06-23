@@ -24,3 +24,7 @@ Thumbs.db
 # logs
 *.log
 npm-debug.log*
+
+# transcripts de teste / conversas (evidência local, não versionar)
+/Criar carrossel*.txt
+*.transcript.txt
