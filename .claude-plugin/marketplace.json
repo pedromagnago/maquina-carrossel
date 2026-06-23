@@ -7,9 +7,9 @@
   "plugins": [
     {
       "name": "maquina-carrossel",
+      "displayName": "Máquina de Carrossel",
       "source": "./plugins/maquina-carrossel",
-      "description": "Gera carrosséis de Instagram prontos pra postar (PNG 1080x1350) a partir de um insumo, com fluxo editorial guiado e validação visual. Local-first, multi-marca.",
-      "version": "0.1.0"
+      "description": "Gera carrosséis de Instagram prontos pra postar (PNG 1080x1350) a partir de um insumo, com fluxo editorial guiado e validação visual. Local-first, multi-marca."
     }
   ]
 }
