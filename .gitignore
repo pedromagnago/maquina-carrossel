@@ -1,0 +1,26 @@
+# dependências (instaladas pelo setup na máquina do usuário)
+**/node_modules/
+
+# artefatos gerados no build (fontes base64)
+**/render/assets/fonts.generated.css
+
+# saídas de teste do render
+**/examples/*/png/
+**/examples/*/render.html
+**/examples/*/preview.html
+**/examples/*/contact-sheet.png
+**/examples/*/report.json
+**/examples/*/sample-capa.png
+out/
+*.local.png
+
+# dados de marca do usuário — NUNCA versionar (LGPD)
+.maquina-carrossel/
+
+# sistema operacional
+.DS_Store
+Thumbs.db
+
+# logs
+*.log
+npm-debug.log*

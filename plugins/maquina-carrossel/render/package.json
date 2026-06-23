@@ -1,0 +1,17 @@
+{
+  "name": "maquina-carrossel-render",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Render local de carrossel: slides.json -> PNG 1080x1350 + preview no frame do Instagram (Playwright/Chromium, offline).",
+  "scripts": {
+    "build-fonts": "node scripts/build-fonts.mjs",
+    "render": "node render.mjs"
+  },
+  "dependencies": {
+    "@fontsource/dm-sans": "^5.0.0",
+    "@fontsource/space-grotesk": "^5.0.0",
+    "culori": "^4.0.1",
+    "playwright": "^1.48.0"
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "meta": {
+    "handle": "@marcademo",
+    "marca": "demo",
+    "tipo_badge": "ANÁLISE",
+    "data": "23/06/2026",
+    "framework": "dados-decidem",
+    "tema": "tempo perdido em reuniões"
+  },
+  "brand_pack_ref": "../marca-demo/brand.json",
+  "slides": [
+    {
+      "ordem": 1, "bg": "dark", "papel": "capa", "tipo": "capa",
+      "headline": "31% DA SEMANA <em>EVAPORA</em> EM REUNIÃO"
+    },
+    {
+      "ordem": 2, "bg": "light", "papel": "contexto", "tipo": "conteudo",
+      "tag": "O QUE OS DADOS MOSTRAM",
+      "blocos": ["A maioria dos gestores acha que reunião é trabalho. <strong>O calendário discorda.</strong>"],
+      "componentes": [{ "tipo": "data-pill", "variante": "danger", "number": "31%", "label": "do tempo útil consumido por reuniões" }],
+      "source": "Fonte: exemplo ilustrativo"
+    },
+    {
+      "ordem": 3, "bg": "dark", "papel": "mecanismo", "tipo": "conteudo",
+      "tag": "POR QUE ACONTECE",
+      "blocos": ["Reunião vira o lugar onde a decisão <strong>não</strong> é tomada — só adiada para a próxima."],
+      "componentes": [{ "tipo": "insight-box", "icon": "💡", "texto": "Quanto mais gente na sala, menor a chance de alguém decidir." }]
+    },
+    {
+      "ordem": 4, "bg": "light", "papel": "comparacao", "tipo": "conteudo",
+      "tag": "O CUSTO REAL",
+      "componentes": [{
+        "tipo": "table",
+        "colunas": ["Formato", "Horas/semana"],
+        "linhas": [["Reuniões recorrentes", "9h"], ["Decisões efetivas", "2h"], ["Poderia ser assíncrono", "5h"]]
+      }],
+      "source": "Fonte: exemplo ilustrativo"
+    },
+    {
+      "ordem": 5, "bg": "gradient", "papel": "insight", "tipo": "conteudo",
+      "tag": "A VIRADA",
+      "componentes": [{ "tipo": "insight-box", "texto": "Toda reunião sem decisão é um e-mail que você pagou caro pra ler em voz alta." }]
+    },
+    {
+      "ordem": 6, "bg": "light", "papel": "cta", "tipo": "fechamento",
+      "tag": "NA PRÁTICA",
+      "blocos": ["Antes de marcar a próxima, pergunte: <strong>qual decisão sai daqui?</strong>"],
+      "componentes": [{ "tipo": "strike-pill", "before": "9h de reunião", "after": "2h de decisão" }],
+      "cta": { "instrucao": "Comenta", "palavra": "AGENDA", "beneficio": "e recebe o checklist de reunião que decide." }
+    }
+  ]
+}

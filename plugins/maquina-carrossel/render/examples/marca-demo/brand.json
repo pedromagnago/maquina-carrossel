@@ -1,0 +1,12 @@
+{
+  "$schema": "brandpack/v1",
+  "slug": "demo",
+  "nome": "Marca Demo",
+  "handle": "@marcademo",
+  "voice_tone": { "descricao": "Direto, claro, sem jargão." },
+  "rules": { "aprovados": ["clareza", "método"], "proibidos": ["solução completa", "disruptivo"] },
+  "visual_tokens": {
+    "cores": { "primaria": "#2563EB", "acento": "#FF6B35", "sucesso": "#00C853" },
+    "fontes": { "headline": "Space Grotesk", "body": "DM Sans" }
+  }
+}

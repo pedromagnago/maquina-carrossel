@@ -1,0 +1,15 @@
+{
+  "name": "maquina-carrossel-marketplace",
+  "owner": {
+    "name": "Pedro Magnago",
+    "email": "pedro.magnago@fullbpo.com"
+  },
+  "plugins": [
+    {
+      "name": "maquina-carrossel",
+      "source": "./plugins/maquina-carrossel",
+      "description": "Gera carrosséis de Instagram prontos pra postar (PNG 1080x1350) a partir de um insumo, com fluxo editorial guiado e validação visual. Local-first, multi-marca.",
+      "version": "0.1.0"
+    }
+  ]
+}

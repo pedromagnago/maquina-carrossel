@@ -1,0 +1,34 @@
+{
+  "meta": {
+    "handle": "@marcademo", "marca": "demo", "tipo_badge": "RAIO-X",
+    "data": "23/06/2026", "framework": "raio-x", "tema": "custo por hora real"
+  },
+  "brand_pack_ref": "../marca-demo/brand.json",
+  "slides": [
+    { "ordem": 1, "bg": "light", "papel": "hook", "tipo": "capa",
+      "headline": "VOCÊ SABE SEU <em>CUSTO/HORA</em> REAL?" },
+    { "ordem": 2, "bg": "dark", "papel": "o-problema", "tipo": "conteudo",
+      "tag": "O QUE ACONTECE QUANDO VOCÊ NÃO SABE",
+      "blocos": ["Sem o número, todo orçamento vira chute. E chute caro vira prejuízo silencioso."],
+      "componentes": [{ "tipo": "insight-box", "icon": "⚠️", "texto": "Quem não sabe o custo da própria hora vende barato sem perceber." }] },
+    { "ordem": 3, "bg": "light", "papel": "metodo", "tipo": "conteudo",
+      "tag": "O MÉTODO",
+      "componentes": [{ "tipo": "numbered-steps", "passos": [{ "numero": "01", "titulo": "Some o custo fixo mensal", "texto": "Aluguel, salários, ferramentas — tudo que sai todo mês." }] }] },
+    { "ordem": 4, "bg": "dark", "papel": "metodo", "tipo": "conteudo",
+      "tag": "O MÉTODO",
+      "componentes": [{ "tipo": "numbered-steps", "passos": [{ "numero": "02", "titulo": "Conte as horas faturáveis", "texto": "Não as horas trabalhadas — só as que viram nota." }] }] },
+    { "ordem": 5, "bg": "light", "papel": "metodo", "tipo": "conteudo",
+      "tag": "O MÉTODO",
+      "componentes": [{ "tipo": "numbered-steps", "passos": [{ "numero": "03", "titulo": "Divida um pelo outro", "texto": "Custo fixo ÷ horas faturáveis = o piso da sua hora." }] }] },
+    { "ordem": 6, "bg": "gradient", "papel": "resultado", "tipo": "conteudo",
+      "tag": "O QUE MUDA",
+      "componentes": [{ "tipo": "feature-list", "itens": [
+        { "icon": "✅", "titulo": "Preço com chão", "texto": "Você para de vender abaixo do custo." },
+        { "icon": "✅", "titulo": "Decisão rápida", "texto": "Sabe na hora se um projeto vale a pena." }
+      ] }] },
+    { "ordem": 7, "bg": "dark", "papel": "cta", "tipo": "fechamento",
+      "tag": "NA PRÁTICA",
+      "blocos": ["Faça a conta hoje. <strong>O número costuma assustar — e libertar.</strong>"],
+      "cta": { "instrucao": "Comenta", "palavra": "HORA", "beneficio": "e recebe a planilha de custo/hora pronta." } }
+  ]
+}
