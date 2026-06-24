@@ -19,6 +19,13 @@ body { background: #2a2a2a; font-family: var(--F-BODY); -webkit-font-smoothing: 
 }
 .slide .content { display: flex; flex-direction: column; gap: 14px; }
 
+/* slides internos claros/escuros: conteúdo centralizado verticalmente (evita topo vazio) */
+.slide.light:not(.capa), .slide.dark:not(.capa) { justify-content: center; }
+
+/* zona de imagem: card no topo do conteúdo (slides internos com imagem) */
+.img-box { width: 100%; height: 188px; border-radius: 14px; overflow: hidden; position: relative; z-index: 2; }
+.img-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
 /* fundos */
 .slide.light    { background: var(--LB); color: var(--DT); }
 .slide.dark     { background: var(--DB); color: var(--LT); }
@@ -31,6 +38,13 @@ body { background: #2a2a2a; font-family: var(--F-BODY); -webkit-font-smoothing: 
   background: var(--P);
 }
 .slide.gradient::before, .slide.alert::before { background: rgba(255,255,255,.5); }
+
+/* scrim de contraste (div real, atrás do conteúdo): texto legível sobre gradiente/alert/imagem */
+.scrim { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+.slide.gradient .scrim, .slide.alert .scrim {
+  background: linear-gradient(to top, rgba(0,0,0,.88) 0%, rgba(0,0,0,.68) 52%, rgba(0,0,0,.48) 100%);
+}
+.slide.has-img.dark .scrim { background: linear-gradient(to top, rgba(0,0,0,.55), rgba(0,0,0,.15) 60%, transparent); }
 
 /* ---------- SKIN HOOK (assinatura visual da marca, atrás do conteúdo) ----------
    A skin.css da marca é injetada após este arquivo e pode estilizar .skin-layer
@@ -84,9 +98,10 @@ body { background: #2a2a2a; font-family: var(--F-BODY); -webkit-font-smoothing: 
 }
 .body { font-family: var(--F-BODY); font-size: 15px; font-weight: 400; line-height: 1.55; }
 .body strong { font-weight: 700; }
-.body em, .h1 em { font-style: normal; color: var(--P); }
+.body em, .h1 em { font-style: normal; font-weight: 700; }
+.slide.light .body em, .slide.light .h1 em { color: var(--PD); }
 .slide.dark .body em, .slide.gradient .body em, .slide.alert .body em,
-.slide.dark .h1 em, .slide.gradient .h1 em, .slide.alert .h1 em { color: var(--LT); text-decoration: underline; text-decoration-color: rgba(255,255,255,.4); }
+.slide.dark .h1 em, .slide.gradient .h1 em, .slide.alert .h1 em { color: var(--PL); }
 
 /* ---------- CAPA ---------- */
 .slide.capa { justify-content: flex-end; }

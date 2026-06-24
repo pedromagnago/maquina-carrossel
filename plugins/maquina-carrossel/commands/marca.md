@@ -53,7 +53,7 @@ Desenhe a **assinatura visual da marca** num arquivo CSS e salve em `~/.maquina-
 - textura/grid/padrão de fundo no `.skin-layer` (dos slides escuros e da capa);
 - tratamento da capa (`.capa-headline`, `.capa .badge`), cor das `.tag`, destaque do `.body em`;
 - glow/gradiente de acento, cor de `.cta-button`, borda dos cards (`.insight-box`, `.data-pill`).
-Mantenha legível (contraste do texto sobre o fundo) e dentro da paleta. Sem brand guide forte, gere uma skin sóbria coerente com a cor primária (gradiente sutil + acento) — melhor que nada.
+**Contraste é regra dura** (não negocie por estética): texto de corpo sempre legível sobre o fundo do slide. Se a cor primária for clara (ex.: verde-limão, amarelo), **não** use ela como cor de texto em fundo claro nem como destaque (`.body em`) em slide claro — use uma versão escura. Em slide claro, destaque = cor escura; em slide escuro/gradiente, destaque = cor clara/bright. O design-system base já põe um scrim escuro nos slides gradiente/alert — **não** sobrescreva o `.scrim`. Sem brand guide forte, gere uma skin sóbria coerente com a primária (gradiente sutil + acento) — melhor que nada.
 
 ### 5. Preview + salvar
 1. Grave `brand.json` (+ `skin.css`) em `~/.maquina-carrossel/marcas/<slug>/`.

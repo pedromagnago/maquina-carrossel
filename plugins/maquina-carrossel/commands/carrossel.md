@@ -54,7 +54,15 @@ Feche com `Estrutura aprovada? (ok / ajustar)` e pare.
 
 **Etapa 4 — Texto final dos slides.** Defina o framework (de `frameworks-slide.md`) e o nº de slides conforme a intenção/triagem (ou o que a marca pediu no intake). Escreva o **texto de cada slide** seguindo a densidade do `manual-qualidade.md`: **no máximo 2 blocos por slide** (bloco 1 contextualiza, bloco 2 aprofunda/contradiz), específico, com dado+fonte+ano onde houver número, **sem 2ª pessoa**, capa com headline curta (6–8 palavras) e o destaque em `<em>`, último slide com CTA único e diretivo. Mostre o texto numerado por slide e feche com `Revisa. Quando estiver ok, digito o visual. (ok / ajustar slide N)`. Pare.
 
-Controles: `refazer headlines`, `reiniciar`, resposta incompatível → repita só a instrução mínima da etapa. Em `--auto`, pule os gates com defaults e vá ao render.
+**Etapa 5 — Imagens (pergunte SEMPRE, é obrigatório).** Depois do texto aprovado, antes de renderizar, pergunte:
+```
+Quer imagem em algum slide? Arrasta o arquivo aqui (ou cola o caminho) dizendo o slide — ex.: "capa" ou "slide 3". Pode mandar mais de uma. Ou responde "sem imagem".
+```
+- **Capa com foto:** fica full-bleed com gradiente por cima (ótimo pra rosto/cena/produto). **Slide interno com foto:** a imagem entra como um card no topo do slide, com o texto abaixo — usa bem o espaço.
+- Sugira onde imagem agrega (capa, slide de prova/caso); se o brand pack tem logo/fotos, pode oferecer. **Nunca invente arquivo** — só usa o que o usuário mandar.
+- Para cada arquivo recebido, guarde o caminho absoluto → vai no `slides.json` como `imagem: { "tipo": "local", "ref": "<caminho>" }` no slide certo. Slides sem imagem → `{ "tipo": "none" }`.
+
+Controles: `refazer headlines`, `reiniciar`, resposta incompatível → repita só a instrução mínima da etapa. Em `--auto`, pule os gates com defaults (sem imagem, salvo se o usuário já anexou arquivos) e vá ao render.
 
 ## 2. Render (silencioso, após o texto aprovado)
 1. Pasta: `~/.maquina-carrossel/saidas/<AAAA-MM-DD>_<slug>_<slug-tema>/` (`date +%F`). Crie.

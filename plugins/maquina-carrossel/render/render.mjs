@@ -126,15 +126,18 @@ function slideHtml(s, i) {
   const blocos = (s.blocos || []).map((b) => `<div class="body">${b}</div>`).join("");
   const comps = (s.componentes || []).map(componenteHtml).join("");
   const source = s.source ? `<div class="source-badge">${s.source}</div>` : "";
+  const _img = s.imagem && s.imagem.tipo === "local" ? imgData(s.imagem.ref) : null;
+  const imgBox = _img ? `<div class="img-box"><img src="${_img}"></div>` : "";
   let cta = "";
   if (isLast && s.cta && (s.cta.instrucao || s.cta.palavra)) {
     const label = [s.cta.instrucao, s.cta.palavra ? `"${s.cta.palavra}"` : "", "→"].filter(Boolean).join(" ");
     cta = `<div class="cta-button"><span>${label}</span></div>${s.cta.beneficio ? `<div class="body">${s.cta.beneficio}</div>` : ""}`;
   }
-  return `<div class="slide ${s.bg}" id="slide-${i + 1}">
+  return `<div class="slide ${s.bg}${imgBox ? " has-img" : ""}" id="slide-${i + 1}">
     <div class="skin-layer"></div>
+    <div class="scrim"></div>
     ${bar}${swipe}
-    <div class="content">${tag}${comps}${head}${blocos}${cta}${source}</div>
+    <div class="content">${imgBox}${tag}${comps}${head}${blocos}${cta}${source}</div>
     ${progress}
   </div>`;
 }
